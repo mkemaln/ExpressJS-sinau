@@ -38,4 +38,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// get static file
+// app.use('/static', express.static('public'));
+
+const path = require('path');
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 module.exports = app;
