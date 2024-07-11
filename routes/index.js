@@ -1,9 +1,18 @@
-var express = require('express');
-var router = express.Router();
+//import express
+const express = require('express')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+//init express router
+const router = express.Router();
 
-module.exports = router;
+//import register controller
+const registerController = require('../controllers/RegisterController');
+
+//import validate register
+const { validateRegister } = require('../utils/validators/auth');
+
+//define route for register
+router.post('/register', validateRegister, registerController.register);
+// router.get('/register', validateRegister, registerController.register);
+
+//export router
+module.exports = router
